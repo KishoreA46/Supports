@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Deletion Guide | TradeLift</title>
+    <meta name="description" content="Learn how to delete your TradeLift account and understand what happens to your data after deletion.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --border-subtle: rgba(99, 102, 241, 0.15);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-indigo: #818cf8;
+            --accent-violet: #a78bfa;
+            --accent-cyan: #22d3ee;
+            --accent-rose: #fb7185;
+            --accent-amber: #fbbf24;
+            --gradient-start: #6366f1;
+            --gradient-end: #8b5cf6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-glow::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(251, 113, 133, 0.06) 0%, transparent 70%);
+            animation: floatGlow 12s ease-in-out infinite;
+        }
+
+        .bg-glow::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+            animation: floatGlow 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatGlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -30px) scale(1.1); }
+            66% { transform: translate(-30px, 20px) scale(0.95); }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 14, 23, 0.8);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-indigo);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 8rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            background: rgba(251, 113, 133, 0.1);
+            border: 1px solid rgba(251, 113, 133, 0.2);
+            font-size: 0.8rem;
+            color: var(--accent-rose);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin: 0 auto;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Main Content */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Warning Banner */
+        .warning-banner {
+            background: rgba(251, 113, 133, 0.08);
+            border: 1px solid rgba(251, 113, 133, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .warning-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(251, 113, 133, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .warning-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent-rose);
+        }
+
+        .warning-content h3 {
+            font-size: 1rem;
+            color: var(--accent-rose);
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .warning-content p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* Steps Section */
+        .steps-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            letter-spacing: -0.3px;
+            animation: fadeInUp 0.6s ease 0.35s both;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.25rem;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.4s; }
+        .step:nth-child(2) { animation-delay: 0.45s; }
+        .step:nth-child(3) { animation-delay: 0.5s; }
+        .step:nth-child(4) { animation-delay: 0.55s; }
+        .step:nth-child(5) { animation-delay: 0.6s; }
+        .step:nth-child(6) { animation-delay: 0.65s; }
+
+        .step-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: white;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .step-line {
+            width: 2px;
+            flex: 1;
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.05));
+            margin-top: 0.5rem;
+        }
+
+        .step:last-child .step-line {
+            display: none;
+        }
+
+        .step-card {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem 1.75rem;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.06);
+            transform: translateX(4px);
+        }
+
+        .step-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.2px;
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .step-card .path {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 8px;
+            padding: 0.3rem 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--accent-indigo);
+            font-weight: 500;
+        }
+
+        .path-arrow {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+        }
+
+        /* What Happens Section */
+        .what-happens {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.6s ease 0.7s both;
+        }
+
+        .what-happens h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.3px;
+        }
+
+        .consequence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .consequence-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .consequence-card:hover {
+            border-color: rgba(99, 102, 241, 0.25);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.05);
+        }
+
+        .consequence-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .consequence-icon.red { background: rgba(251, 113, 133, 0.12); }
+        .consequence-icon.amber { background: rgba(251, 191, 36, 0.12); }
+        .consequence-icon.green { background: rgba(34, 197, 94, 0.12); }
+
+        .consequence-card h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.35rem;
+        }
+
+        .consequence-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.6s ease 0.75s both;
+        }
+
+        .faq-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.3px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(99, 102, 241, 0.25);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.15rem 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 0.92rem;
+            font-weight: 600;
+            font-family: inherit;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover {
+            color: var(--accent-indigo);
+        }
+
+        .faq-chevron {
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            transition: transform 0.3s ease, color 0.2s;
+        }
+
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+            color: var(--accent-indigo);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.25rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.6s ease 0.8s both;
+        }
+
+        .contact-section h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-section p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.5rem;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .contact-email:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .contact-email svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border-subtle);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        .footer a {
+            color: var(--accent-indigo);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            color: var(--accent-violet);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .consequence-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 7rem 1.25rem 2rem;
+            }
+
+            .content {
+                padding: 1rem 1.25rem 4rem;
+            }
+
+            .nav {
+                padding: 0.75rem 1.25rem;
+            }
+
+            .step {
+                gap: 1rem;
+            }
+
+            .step-card {
+                padding: 1.25rem;
+            }
+
+            .warning-banner {
+                padding: 1.25rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <nav class="nav" id="navbar">
+        <div class="nav-inner">
+            <div class="logo">TradeLift</div>
+            <ul class="nav-links">
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="account-deletion.html" class="active">Account Deletion</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-badge">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 10.5h-6m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"/></svg>
+            Account Management
+        </div>
+        <h1>Account Deletion Guide</h1>
+        <p>Follow the steps below to permanently delete your TradeLift account and all associated data.</p>
+    </header>
+
+    <main class="content">
+        <!-- Warning Banner -->
+        <div class="warning-banner">
+            <div class="warning-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+            </div>
+            <div class="warning-content">
+                <h3>This action is permanent and cannot be undone</h3>
+                <p>Once your account is deleted, all your data—including trade history, listings, messages, and profile information—will be permanently removed from our servers. You will not be able to recover your account.</p>
+            </div>
+        </div>
+
+        <!-- Steps -->
+        <h2 class="steps-title">How to Delete Your Account</h2>
+        <div class="steps">
+            <!-- Step 1 -->
+            <div class="step">
+                <div class="step-indicator">
+                    <div class="step-number">1</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step-card">
+                    <h3>Open TradeLift App</h3>
+                    <p>Launch the TradeLift app on your device and make sure you are logged into the account you wish to delete.</p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step">
+                <div class="step-indicator">
+                    <div class="step-number">2</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step-card">
+                    <h3>Navigate to Settings</h3>
+                    <p>Tap on your profile icon in the bottom navigation bar, then tap the settings gear icon in the top-right corner.</p>
+                    <div class="path">
+                        <span>Profile</span>
+                        <span class="path-arrow">→</span>
+                        <span>Settings</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step">
+                <div class="step-indicator">
+                    <div class="step-number">3</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step-card">
+                    <h3>Go to Account Settings</h3>
+                    <p>Scroll down and tap on "Account" to access your account management options.</p>
+                    <div class="path">
+                        <span>Settings</span>
+                        <span class="path-arrow">→</span>
+                        <span>Account</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step">
+                <div class="step-indicator">
+                    <div class="step-number">4</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step-card">
+                    <h3>Select "Delete Account"</h3>
+                    <p>Scroll to the bottom of the Account page and tap the "Delete Account" button, highlighted in red.</p>
+                    <div class="path">
+                        <span>Account</span>
+                        <span class="path-arrow">→</span>
+                        <span>Delete Account</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step">
+                <div class="step-indicator">
+                    <div class="step-number">5</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step-card">
+                    <h3>Confirm Your Identity</h3>
+                    <p>For security, you may be asked to re-enter your password or verify your identity via a confirmation code sent to your registered email or phone number.</p>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step">
+                <div class="step-indicator">
+                    <div class="step-number">6</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step-card">
+                    <h3>Confirm Deletion</h3>
+                    <p>Review the summary of what will be deleted, then tap "Permanently Delete My Account" to finalize the process. Your account and data will be scheduled for deletion.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- What Happens After -->
+        <div class="what-happens">
+            <h2>What Happens After Deletion</h2>
+            <div class="consequence-grid">
+                <div class="consequence-card">
+                    <div class="consequence-icon red">🗑️</div>
+                    <h4>Data Permanently Removed</h4>
+                    <p>Your profile, trade history, listings, saved items, and messages will be permanently deleted from our servers within 30 days.</p>
+                </div>
+                <div class="consequence-card">
+                    <div class="consequence-icon red">🔐</div>
+                    <h4>No Access to Account</h4>
+                    <p>You will be immediately logged out and will no longer be able to access your account or any associated data.</p>
+                </div>
+                <div class="consequence-card">
+                    <div class="consequence-icon amber">⏳</div>
+                    <h4>30-Day Grace Period</h4>
+                    <p>Some data may be retained for up to 30 days to fulfill legal obligations, resolve disputes, or enforce agreements.</p>
+                </div>
+                <div class="consequence-card">
+                    <div class="consequence-icon amber">📧</div>
+                    <h4>Email Unlinked</h4>
+                    <p>Your email address will be unlinked and can be used to create a new account in the future, if desired.</p>
+                </div>
+                <div class="consequence-card">
+                    <div class="consequence-icon green">🔄</div>
+                    <h4>Fresh Start Available</h4>
+                    <p>After deletion, you're welcome to create a brand-new TradeLift account at any time. Previous data will not be recoverable.</p>
+                </div>
+                <div class="consequence-card">
+                    <div class="consequence-icon green">🛡️</div>
+                    <h4>Anonymized Analytics</h4>
+                    <p>Fully anonymized, aggregated usage data that cannot identify you may be retained for analytics and service improvement.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item" id="faq-1">
+                    <button class="faq-question" onclick="toggleFaq('faq-1')">
+                        Can I recover my account after deletion?
+                        <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">No. Once your account is permanently deleted, it cannot be recovered. All associated data is irreversibly removed from our systems. Please make sure you truly wish to delete your account before proceeding.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item" id="faq-2">
+                    <button class="faq-question" onclick="toggleFaq('faq-2')">
+                        How long does it take to delete my data?
+                        <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Your account access is revoked immediately. Complete data removal from our servers, including all backups, is completed within 30 days of your deletion request.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item" id="faq-3">
+                    <button class="faq-question" onclick="toggleFaq('faq-3')">
+                        What if I can't access my account?
+                        <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">If you cannot log in to your account, please contact our support team at <strong>support@tradelift.app</strong>. After verifying your identity, we can process your account deletion request on your behalf.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item" id="faq-4">
+                    <button class="faq-question" onclick="toggleFaq('faq-4')">
+                        Will my active listings be removed?
+                        <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Yes. All your active listings, drafts, and saved items will be removed immediately when your account is deleted. Any pending transactions will be cancelled.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item" id="faq-5">
+                    <button class="faq-question" onclick="toggleFaq('faq-5')">
+                        Can I download my data before deleting?
+                        <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Yes. Before deleting your account, you can request a copy of your data by going to <strong>Settings → Account → Download My Data</strong>. We recommend doing this before initiating the deletion process.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact-section">
+            <h2>Need Help?</h2>
+            <p>If you have questions or need assistance with account deletion, our support team is here to help.</p>
+            <a href="mailto:support@tradelift.app" class="contact-email">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                support@tradelift.app
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 TradeLift. All rights reserved. &nbsp;|&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="account-deletion.html">Account Deletion</a></p>
+    </footer>
+
+    <script>
+        function toggleFaq(id) {
+            const item = document.getElementById(id);
+            const isOpen = item.classList.contains('open');
+
+            // Close all items
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('open');
+            });
+
+            // Toggle clicked item
+            if (!isOpen) {
+                item.classList.add('open');
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
